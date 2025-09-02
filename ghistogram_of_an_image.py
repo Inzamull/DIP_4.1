@@ -15,3 +15,6 @@ plt.ylabel('Frequency')
 plt.xlim([0, 256])
 plt.plot(hist, color='black')
 plt.show()
+
+
+
