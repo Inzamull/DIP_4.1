@@ -1,1 +1,1 @@
-cv2.imread('/home/inzamul/Downloads/big_image.jpg')
+tulip new.jpg

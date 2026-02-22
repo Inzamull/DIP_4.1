@@ -30,11 +30,11 @@ plt.title("Log Magnitude Spectrum")
 plt.imshow(magnitude_dft, cmap='gray')
 plt.axis('off')
 
-plt.subplot(2,2,1)
+plt.subplot(3,2,1)
 plt.title("DFT Difference")
 plt.imshow(np.log(diff_dft + 1), cmap='gray')
 
-plt.subplot(2,2,2)
+plt.subplot(3,2,2)
 plt.title("DFT Sum")
 plt.imshow(np.log(sum_dft + 1), cmap='gray')
 

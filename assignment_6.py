@@ -1,15 +1,13 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from google.colab import files
 
-# ================= Custom filter function =================
 def custom_filter2D(img, kernel, mode='same'):
     kernel = np.array(kernel, dtype=np.float32)
     k_h, k_w = kernel.shape
     flipped_kernel = np.flipud(np.fliplr(kernel))
 
-    if img.ndim == 3:  # color image
+    if img.ndim == 3:  
         channels = []
         for c in range(img.shape[2]):
             filtered = custom_filter2D(img[:, :, c], kernel, mode)
@@ -39,13 +37,13 @@ def custom_filter2D(img, kernel, mode='same'):
     output = cv2.normalize(output, None, 0, 255, cv2.NORM_MINMAX)
     return output.astype(np.uint8)
 
-# ================= Display function =================
+
 def display_img(img_set, titles, row, col, max_width=300):
     plt.figure(figsize=(15, 10))
     for k, img in enumerate(img_set):
         plt.subplot(row, col, k+1)
 
-        # resize for plotting
+        
         scale_ratio = max_width / img.shape[1]
         new_height = int(img.shape[0] * scale_ratio)
         if img.ndim == 2:
@@ -60,22 +58,19 @@ def display_img(img_set, titles, row, col, max_width=300):
     plt.tight_layout()
     plt.show()
 
-# ================= Main function =================
+
 def main():
-    uploaded = files.upload()
-    img_path = list(uploaded.keys())[0]
-    img = cv2.imread(img_path)
+    img = img = cv2.imread('/home/inzamul/Downloads/rose.jpg', 0)
 
     if img is None:
         print("Error: Image not loaded!")
         return
 
-    # resize large image to width=800
     max_width = 800
     scale_ratio = max_width / img.shape[1]
     img = cv2.resize(img, (max_width, int(img.shape[0]*scale_ratio)))
 
-    # ================= Define kernels =================
+    
     kernel_vertical = [[-1, 0, 1],
                        [-2, 0, 2],
                        [-1, 0, 1]]
@@ -88,7 +83,6 @@ def main():
                       [1/9, 1/9, 1/9],
                       [1/9, 1/9, 1/9]]
 
-    # ================= Apply filters =================
     filtered_img = [
         img,
         custom_filter2D(img, kernel_vertical),

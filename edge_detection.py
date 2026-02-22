@@ -2,10 +2,9 @@ import cv2
 import matplotlib.pyplot as plt
 
 
-img = cv2.imread('/home/inzamul/Downloads/rose.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('/home/inzamul/Downloads/lily.Jpg', cv2.IMREAD_GRAYSCALE)
 
-# Apply Canny Edge Detection
-edges = cv2.Canny(img, 100, 200) 
+edges = cv2.Canny(img, 180, 250) 
 
 # Show Results
 plt.figure(figsize=(10,5))
